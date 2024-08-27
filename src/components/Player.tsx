@@ -13,17 +13,22 @@ export const Player = ({ initialName, symbol }: Player) => {
     setEditing((isEditing) => !isEditing);
   };
 
-  const eventListener = (anotherName) => {
-    setPlayerName(anotherName);
+  const eventListener = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPlayerName(event.target.value);
   };
 
   return (
     <li>
       <span className="player">
         {isEditing === false ? (
-          <span className="player-name">{initialName}</span>
+          <span className="player-name">{playerName}</span>
         ) : (
-          <input type="text" required defaultValue={initialName}></input>
+          <input
+            type="text"
+            onChange={eventListener}
+            required
+            defaultValue={playerName}
+          ></input>
         )}
         <span className="player-symbol">{symbol}</span>
       </span>
