@@ -3,9 +3,10 @@ import { useState } from "react";
 type Player = {
   initialName: string;
   symbol: string;
+  isActive: boolean;
 };
 
-export const Player = ({ initialName, symbol }: Player) => {
+export const Player = ({ initialName, symbol, isActive }: Player) => {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setEditing] = useState(false);
 
@@ -18,7 +19,7 @@ export const Player = ({ initialName, symbol }: Player) => {
   };
 
   return (
-    <li>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {isEditing === false ? (
           <span className="player-name">{playerName}</span>
