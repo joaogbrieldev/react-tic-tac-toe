@@ -1,4 +1,6 @@
-export const Log = ({ turns }) => {
+import { GameTurn } from "../types";
+
+export const Log = ({ turns }: { turns: GameTurn[] }) => {
   return (
     <ol id="log">
       {turns.map((turn) => (
