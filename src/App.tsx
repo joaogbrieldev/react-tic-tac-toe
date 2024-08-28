@@ -1,7 +1,8 @@
 import { useState } from "react";
-import GameBoard, { GameTurn, PlayerSymbol } from "./components/GameBoard";
+import GameBoard from "./components/GameBoard";
 import { Log } from "./components/Log";
 import { Player } from "./components/Player";
+import { GameTurn, PlayerSymbol } from "./types";
 
 function deriveActivePlayer(gameTurns: GameTurn[]): PlayerSymbol {
   let currentPlayer: PlayerSymbol = "X";

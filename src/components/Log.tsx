@@ -1,9 +1,4 @@
-import { PlayerSymbol, SquarePosition } from "./GameBoard";
-
-interface GameTurn {
-  square: SquarePosition;
-  player: PlayerSymbol;
-}
+import { GameTurn } from "../types";
 
 export const Log = ({ turns }: { turns: GameTurn[] }) => {
   return (
