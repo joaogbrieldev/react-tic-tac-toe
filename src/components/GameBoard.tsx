@@ -1,4 +1,4 @@
-type PlayerSymbol = "X" | "O" | null;
+import { GameBoardProps, PlayerSymbol } from "../types";
 
 const initialGameBoard: PlayerSymbol[][] = [
   [null, null, null],
@@ -6,13 +6,8 @@ const initialGameBoard: PlayerSymbol[][] = [
   [null, null, null],
 ];
 
-interface GameBoardProps {
-  onSelectSquare: () => void;
-  activePlayerSymbol: PlayerSymbol;
-}
-
-export default function GameBoard({ onSelectSquare, turns }) {
-  const gameBoard = initialGameBoard;
+export default function GameBoard({ onSelectSquare, turns }: GameBoardProps) {
+  const gameBoard = initialGameBoard.map((row) => row.slice());
 
   for (const turn of turns) {
     const { square, player } = turn;
@@ -20,18 +15,6 @@ export default function GameBoard({ onSelectSquare, turns }) {
 
     gameBoard[row][col] = player;
   }
-
-  // const [gameBoard, setGameBoard] = useState(initialGameBoard);
-
-  // function handleSelectSquare(rowIndex, colIndex) {
-  //   setGameBoard((prevGameBoard) => {
-  //     const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-  //     updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-  //     return updatedBoard;
-  //   });
-
-  //   onSelectSquare();
-  // }
 
   return (
     <ol id="game-board">
