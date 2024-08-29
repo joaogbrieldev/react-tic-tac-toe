@@ -13,7 +13,7 @@ export interface GameTurn {
 
 export interface GameBoardProps {
   onSelectSquare: (rowIndex: number, colIndex: number) => void;
-  turns: GameTurn[];
+  board: GameTurn[];
 }
 
 export interface GameTurn {
