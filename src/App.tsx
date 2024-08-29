@@ -1,5 +1,6 @@
 import { useState } from "react";
 import GameBoard from "./components/GameBoard";
+import { GameOver } from "./components/GameOver";
 import { Log } from "./components/Log";
 import { Player } from "./components/Player";
 import { GameTurn, PlayerSymbol } from "./types";
@@ -24,7 +25,11 @@ function deriveActivePlayer(gameTurns: GameTurn[]): PlayerSymbol {
 function App() {
   const [gameTurns, setGameTurns] = useState<GameTurn[]>([]);
 
-  const gameBoard = initialGameBoard;
+  function clearArray() {
+    setGameTurns([]);
+  }
+
+  const gameBoard = [...initialGameBoard.map((array) => [...array])];
 
   for (const turn of gameTurns) {
     const { square, player } = turn;
@@ -52,6 +57,8 @@ function App() {
     }
   }
   const activePlayer = deriveActivePlayer(gameTurns);
+
+  const hasDraw = gameTurns.length === 9 && !winner;
 
   function handleSelectSquare(rowIndex: number, colIndex: number) {
     setGameTurns((prevTurns) => {
@@ -81,7 +88,7 @@ function App() {
             isActive={activePlayer === "O"}
           />
         </ol>
-        {winner && <p>You won, {winner}!</p>}
+        {(winner || hasDraw) && <GameOver click={clearArray} winner={winner} />}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
