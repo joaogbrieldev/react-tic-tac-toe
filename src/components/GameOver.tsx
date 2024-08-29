@@ -1,4 +1,6 @@
-export const GameOver = ({ winner, click }) => {
+import { GameOverProps } from "../types";
+
+export const GameOver = ({ winner, click }: GameOverProps) => {
   return (
     <div id="game-over">
       <h2>Game Over! </h2>
