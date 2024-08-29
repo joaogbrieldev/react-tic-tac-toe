@@ -1,5 +1,4 @@
-// Definindo os tipos
-export type PlayerSymbol = "X" | "O" | null;
+export type PlayerSymbol = "X" | "O" | null | undefined;
 
 export interface SquarePosition {
   row: number;
@@ -13,10 +12,10 @@ export interface GameTurn {
 
 export interface GameBoardProps {
   onSelectSquare: (rowIndex: number, colIndex: number) => void;
-  board: GameTurn[];
+  board: PlayerSymbol[][];
 }
 
-export interface GameTurn {
-  square: SquarePosition;
-  player: PlayerSymbol;
+export interface GameOverProps {
+  winner: PlayerSymbol;
+  click: () => void;
 }
